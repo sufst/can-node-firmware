@@ -1,0 +1,5 @@
+{
+    "clangd.arguments": [
+        "--compile-commands-dir=c:\\Users\\ethan\\OneDrive - University of Southampton\\Documents\\SUFST\\can-node\\_build_mplab\\can-node\\default\\image_default.elf"
+    ]
+}

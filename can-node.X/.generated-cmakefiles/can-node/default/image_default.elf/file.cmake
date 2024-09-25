@@ -1,0 +1,8 @@
+set(FILE_GROUP_assemble "")
+set(FILE_GROUP_assemblePreprocess "")
+set(FILE_GROUP_compile "../../../../main.c;../../../../can_msgs.c;../../../../mcc_generated_files/mcc.c;../../../../mcc_generated_files/device_config.c;../../../../mcc_generated_files/pin_manager.c;../../../../mcc_generated_files/can1.c;../../../../mcc_generated_files/adc.c;../../../../mcc_generated_files/interrupt_manager.c;../../../../mcc_generated_files/clkref.c")
+set(FILE_GROUP_link "")
+set(BUILD_LIBRARY 0)
+set(internal_image_name "c:/Users/ethan/OneDrive - University of Southampton/Documents/SUFST/can-node/can-node.X/_build_mplab/can-node/default/image_default.elf/default.elf")
+set(image_name "default.elf")
+set(output_dir "c:/Users/ethan/OneDrive - University of Southampton/Documents/SUFST/can-node/can-node.X/out/can-node")

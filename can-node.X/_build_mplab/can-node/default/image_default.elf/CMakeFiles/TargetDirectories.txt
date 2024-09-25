@@ -1,0 +1,4 @@
+C:/Users/ethan/OneDrive - University of Southampton/Documents/SUFST/can-node/can-node.X/_build_mplab/can-node/default/image_default.elf/CMakeFiles/compile.dir
+C:/Users/ethan/OneDrive - University of Southampton/Documents/SUFST/can-node/can-node.X/_build_mplab/can-node/default/image_default.elf/CMakeFiles/default.elf.dir
+C:/Users/ethan/OneDrive - University of Southampton/Documents/SUFST/can-node/can-node.X/_build_mplab/can-node/default/image_default.elf/CMakeFiles/edit_cache.dir
+C:/Users/ethan/OneDrive - University of Southampton/Documents/SUFST/can-node/can-node.X/_build_mplab/can-node/default/image_default.elf/CMakeFiles/rebuild_cache.dir

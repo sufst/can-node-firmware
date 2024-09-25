@@ -1,143 +1,64 @@
 /* 
  * File: 
- * Author: Alexander Mills (am9g22@soton.ac.uk)
- * CAN message structure based of what is documented in https://github.com/sufst/tem-firmware/blob/main/Orion-BMS-TEM-reference/thermistor_module_canbus.pdf
+ * Author: Ethan Turnbull (ert1g23@soton.ac.uk)
  * Revision history: 
  */
 #include "config.h"
 
 
 static uint8_t msg_data[8];
+static int8_t therm_msg_data[8];
 
-uint8_t get_checksum(uint8_t* data, uint8_t len) {
-    uint8_t sum = 0;
-    for(uint8_t i=0; i<len; i++) {
-        sum += data[i];
-    }
-    return sum;
-}
-
-
-CAN_MSG_OBJ get_TM2BMS_Broadcast_msg(int8_t temps_array[], uint8_t module_id) {
+CAN_MSG_OBJ get_PD_Broadcast_msg(ADC_channel_t voltages_array[], uint8_t module_id, uint8_t multiplexor) {
     CAN_MSG_OBJ msg;
     
-    //calculate data
-    int8_t min_temp = 127;
-    uint8_t min_temp_i = 0; 
-    int8_t max_temp = -128;
-    uint8_t max_temp_i = 0;
-    
-    uint8_t alive_therm_cnt = 0, is_dead = 0;
-    
-    int32_t total_temp = 0;
-    for(uint8_t temp_i=0; temp_i<THERM_COUNT; temp_i++) {
-        is_dead = !!(dead_therm_map[module_id-1] & (1 << temp_i));
-        
-        if (!is_dead) {
-            int8_t this_temp = temps_array[temp_i];
-            if(this_temp < min_temp)
-            {
-                min_temp = this_temp;
-                min_temp_i = temp_i;
-            }
-            if(this_temp > max_temp)
-            {
-                max_temp = this_temp;
-                max_temp_i = temp_i;
-            }
-            total_temp += this_temp;
-            alive_therm_cnt++;
-        }
-    }
-    
-    int8_t avg_temp = total_temp / alive_therm_cnt;
-    
-    msg_data[0] = module_id - 1;
-    msg_data[1] = (uint8_t)min_temp;
-    msg_data[2] = (uint8_t)max_temp;
-    msg_data[3] = (uint8_t)avg_temp;
-    msg_data[4] = THERM_COUNT; 
-    msg_data[5] = max_temp_i;
-    msg_data[6] = min_temp_i;
-    
-    // checksum has magic offset
-    msg_data[7] = get_checksum((uint8_t*)msg_data, 7) + 0x41;
-    
+    // Packing the multiplexor (4 bits) into bits 0-3
+    msg_data[0] |= (multiplexor & 0x0F); // Multiplexor takes bits 0-3
+
+    // Packing CAN_NODE_PD_1 or 6 (12 bits) into bits 4-15
+    msg_data[0] |= (voltages_array[0+(multiplexor*5)] & 0x00F) << 4; // Lower 4 bits of PD_1 in bits 4-7 of msg_data[0]
+    msg_data[1] |= (voltages_array[0+(multiplexor*5)] >> 4) & 0xFF; // Upper 8 bits of PD_1 in msg_data[1]
+
+    // Packing CAN_NODE_PD_2 or 7 (12 bits) into bits 16-29
+    msg_data[2] |= (voltages_array[1+(multiplexor*5)] & 0x00FF);      // Lower 8 bits of PD_2 in msg_data[2]
+    msg_data[3] |= (voltages_array[1+(multiplexor*5)] >> 8) & 0x0F;   // Upper 4 bits of PD_2 in bits 0-3 of msg_data[3]
+
+    // Packing CAN_NODE_PD_3 or 8 (12 bits) into bits 30-43
+    msg_data[3] |= (voltages_array[2+(multiplexor*5)] & 0x00F) << 4;  // Lower 4 bits of PD_3 in bits 4-7 of msg_data[3]
+    msg_data[4] |= (voltages_array[2+(multiplexor*5)] >> 4) & 0xFF;   // Upper 8 bits of PD_3 in msg_data[4]
+
+    // Packing CAN_NODE_PD_4 or 9 (12 bits) into bits 44-55
+    msg_data[5] |= (voltages_array[3+(multiplexor*5)] & 0x00FF);      // Lower 8 bits of PD_4 in msg_data[5]
+    msg_data[6] |= (voltages_array[3+(multiplexor*5)] >> 8) & 0x0F;   // Upper 4 bits of PD_4 in bits 0-3 of msg_data[6]
+
+    // Packing CAN_NODE_PD_5 or 10 (12 bits) into bits 56-63
+    msg_data[6] |= (voltages_array[4+(multiplexor*5)] & 0xF0) >> 4;   // Upper 4 bits of PD_5 in bits 4-7 of msg_data[6]
+    msg_data[7] |= (voltages_array[4+(multiplexor*5)] & 0x00FF);   // Lower 8 bits of PD_5 in bits 0-8 of msg_data[7]
+
     // assemble packet
-    msg.msgId = 0x1839F380 + module_id;
+    msg.msgId = 0x600 + module_id + multiplexor; 
     msg.field.formatType = CAN_2_0_FORMAT;
     msg.field.brs = CAN_NON_BRS_MODE;
     msg.field.dlc = DLC_8;
     msg.field.frameType = CAN_FRAME_DATA;
     msg.field.idType = CAN_FRAME_EXT;
     msg.data = msg_data;
-    
-    return msg;
 }
 
-
-CAN_MSG_OBJ get_TM_General_Broadcast_msg(int8_t temps_array[], uint8_t module_id) {
-    static uint8_t broadcast_therm_i;
-    
+CAN_MSG_OBJ get_Therm_Broadcast_msg(int8_t temps_array[], uint8_t module_id, uint8_t multiplexor) {
     CAN_MSG_OBJ msg;
     
-    //calculate data
-    int8_t min_temp = 127;
-    uint8_t min_temp_i = 0; 
-    int8_t max_temp = -128;
-    uint8_t max_temp_i = 0;
-    
-    uint8_t alive_therm_cnt = 0, is_dead = 0;
-    
-    int32_t total_temp = 0;
-    for(uint8_t temp_i=0; temp_i<THERM_COUNT; temp_i++) {
-        is_dead = !!(dead_therm_map[module_id-1] & (1 << temp_i));
-        
-        if (!is_dead) {
-            int8_t this_temp = temps_array[temp_i];
-            if(this_temp < min_temp)
-            {
-                min_temp = this_temp;
-                min_temp_i = temp_i;
-            }
-            if(this_temp > max_temp)
-            {
-                max_temp = this_temp;
-                max_temp_i = temp_i;
-            }
-            total_temp += this_temp;
-            alive_therm_cnt++;
-        }
-    }
-    
-    int8_t avg_temp = total_temp / alive_therm_cnt;
-    
-    uint16_t absolute_therm_id = (80 * module_id) + broadcast_therm_i;
-    int8_t broadcast_therm_temp = temps_array[broadcast_therm_i];
-    
-    msg_data[0] = absolute_therm_id>>8;
-    msg_data[1] = absolute_therm_id & 0xff;
-    msg_data[2] = (uint8_t)broadcast_therm_temp;
-    msg_data[3] = THERM_COUNT;
-    msg_data[4] = (uint8_t)min_temp;
-    msg_data[5] = (uint8_t)max_temp; 
-    msg_data[6] = max_temp_i;
-    msg_data[7] = min_temp_i;
-    
+    // Packing the multiplexor (4 bits) into bits 0-3
+    therm_msg_data[0] = multiplexor;
+    therm_msg_data[1] = temps_array[0];
+    therm_msg_data[2] = temps_array[1];
+
     // assemble packet
-    msg.msgId = 0x1838F380 + module_id;
+    msg.msgId = 0x600 + module_id + multiplexor;
     msg.field.formatType = CAN_2_0_FORMAT;
     msg.field.brs = CAN_NON_BRS_MODE;
     msg.field.dlc = DLC_8;
     msg.field.frameType = CAN_FRAME_DATA;
     msg.field.idType = CAN_FRAME_EXT;
     msg.data = msg_data;
-    
-    
-    // increment broadcast_therm_i
-    if(++broadcast_therm_i >= THERM_COUNT) {
-        broadcast_therm_i = 0;
-    }
-    
-    return msg;
 }

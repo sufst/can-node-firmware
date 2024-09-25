@@ -54,8 +54,8 @@
 #include <conio.h>
 #include "interrupt_manager.h"
 #include "adc.h"
-#include "clkref.h"
 #include "can1.h"
+#include "clkref.h"
 
 
 

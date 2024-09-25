@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project>
-  <executable name="dist/default/debug/tem-firmware.X.debug.hex">
+  <executable name="dist/default/debug\can-node.X.debug.hex">
     <memory name="program">
       <units>bytes</units>
       <length>131072</length>
-      <used>8946</used>
-      <free>122126</free>
+      <used>7888</used>
+      <free>123184</free>
     </memory>
     <memory name="data">
       <units>bytes</units>
       <length>12800</length>
-      <used>4308</used>
-      <free>8492</free>
+      <used>4212</used>
+      <free>8588</free>
     </memory>
   </executable>
 </project>

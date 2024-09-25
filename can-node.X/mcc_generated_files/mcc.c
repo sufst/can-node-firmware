@@ -54,8 +54,8 @@ void SYSTEM_Initialize(void)
     PIN_MANAGER_Initialize();
     ADC_Initialize();
     OSCILLATOR_Initialize();
-    CLKREF_Initialize();
     CAN1_Initialize();
+    CLKREF_Initialize();
 }
 
 void OSCILLATOR_Initialize(void)

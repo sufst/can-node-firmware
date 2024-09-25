@@ -118,8 +118,8 @@ void ADC_Initialize(void)
     //ADRESH 0; 
     ADRESH = 0x00;
 
-    //ADCHS ANA0; 
-    ADPCH = 0x00;
+    //ADCHS ANA2; 
+    ADPCH = 0x02;
 
     //ADACQL 0; 
     ADACQL = 0x00;

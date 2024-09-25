@@ -37,12 +37,13 @@
 
 #define LOOP_PERIOD 100 //ms
 
-#define MIN_THERM_ID 0 // zero based thermistor id
-#define MAX_THERM_ID 23 // zero based thermistor id
+#define MIN_THERM_ID 1 // one based thermistor id
+#define MAX_THERM_ID 2 // one based thermistor id
 #define THERM_COUNT (MAX_THERM_ID - MIN_THERM_ID + 1)
 
-#define NUM_SEG 9
-extern uint32_t dead_therm_map[NUM_SEG];
+#define MIN_PD_ID 1 // one based voltage measurement id
+#define MAX_PD_ID 10 // one based voltage measurement id
+#define PD_COUNT (MAX_PD_ID - MIN_PD_ID + 1)
 
 #ifdef	__cplusplus
 extern "C" {

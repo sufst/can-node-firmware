@@ -45,43 +45,22 @@
 #include "can_msgs.h"
 #include "therm_LUT.h"
 
-uint32_t dead_therm_map[NUM_SEG] = {
-    0x000,
-    0x008,
-    0x000,
-    0x000,
-    0x000,
-    0x000,
-    0x000,
-    0x000,
-    0x000
+ADC_channel_t therm_to_adc_channel[] = {
+THERM_1,
+THERM_2
 };
 
-ADC_channel_t therm_to_adc_channel[] = {
-therm1,
-therm2,
-therm3,
-therm4,
-therm5,
-therm6,
-therm7,
-therm8,
-therm9,
-therm10,
-therm11,
-therm12,
-therm13,
-therm14,
-therm15,
-therm16,
-therm17,
-therm18,
-therm19,
-therm20,
-therm21,
-therm22,
-therm23,
-therm24
+ADC_channel_t pd_to_adc_channel[] = {
+PD_1,
+PD_2,
+PD_3,
+PD_4,
+PD_5,
+PD_6,
+PD_7,
+PD_8,
+PD_9,
+PD_10
 };
 
 
@@ -91,8 +70,9 @@ int8_t adc_to_temp(adc_result_t reading)
 	return therm_lut[reading];
 }
 
-uint8_t module_id; // 0 to 15, set by config resistors r30-r33
+uint8_t module_id; // 0 to 15, set by config resistors R3-R6
 int8_t temps[THERM_COUNT];
+ADC_channel_t pd_voltages[PD_COUNT];
 
 void main(void)
 {
@@ -104,28 +84,32 @@ void main(void)
 	ADC_SelectContext(CONTEXT_1);
     
 //     read module ID from config resistors
-    module_id = (1 - CFG_R30_GetValue()) * 1 +
-                (1 - CFG_R31_GetValue()) * 2 +
-                (1 - CFG_R32_GetValue()) * 4 +
-                (1 - CFG_R33_GetValue()) * 8 + 1;
+    module_id = (1 - CFG_R3_GetValue()) * 1 +
+                (1 - CFG_R4_GetValue()) * 2 +
+                (1 - CFG_R5_GetValue()) * 4 +
+                (1 - CFG_R6_GetValue()) * 8 + 1;
         
     while (1)
     {   
         //read temps
 		for (uint8_t therm_i = MIN_THERM_ID; therm_i <= MAX_THERM_ID; therm_i++)
 		{
-            is_dead = !!(dead_therm_map[module_id-1] & (1 << therm_i));
-            
-            if(!is_dead){
-                ADC_StartConversion(therm_to_adc_channel[therm_i]);
-                while(!ADC_IsConversionDone());
-                adc_result_t reading = ADC_GetConversionResult();
-                temps[therm_i-MIN_THERM_ID] = adc_to_temp(reading);
-            }
-            else {
-                temps[therm_i-MIN_THERM_ID] = 15;
-            }
+      ADC_StartConversion(therm_to_adc_channel[therm_i]);
+      while(!ADC_IsConversionDone());
+      adc_result_t reading = ADC_GetConversionResult();
+      temps[therm_i-MIN_THERM_ID] = adc_to_temp(reading);
 		}
+
+    for (uint8_t pd_i = MIN_PD_ID; pd_i <= MAX_PD_ID; pd_i++)
+    {
+      ADC_StartConversion(pd_to_adc_channel[pd_i]);
+      while(!ADC_IsConversionDone());
+      adc_result_t reading = ADC_GetConversionResult();
+      // The following is implemented into the candbc file
+      //reading = reading * 3.3 * 5 / 1024; // convert to volts (3.3v reference, 4:1 potential divider and 12 bit adc)
+      pd_voltages[pd_i-MIN_PD_ID] = reading;
+    }
+
 
         // set up can interface
 		switch (CAN1_OperationModeGet())
@@ -137,15 +121,19 @@ void main(void)
 			// transmit data
 		    if(CAN_TX_FIFO_AVAILABLE == (CAN1_TransmitFIFOStatusGet(CAN1_TX_TXQ)))
 		    {
-				// broadcast msg
-				msg = get_TM2BMS_Broadcast_msg(temps, module_id);
-				CAN1_Transmit(CAN1_TX_TXQ, &msg);
-				while(CAN1_TransmitFIFOStatusGet(CAN1_TX_TXQ) == CAN_TX_FIFO_FULL);
+          // PD broadcast msg
+          for (uint8_t multiplexor = 0; multiplexor <= 1; multiplexor++)
+          {
+            msg = get_PD_Broadcast_msg(pd_voltages, module_id, multiplexor);
+            CAN1_Transmit(CAN1_TX_TXQ, &msg);
+            while(CAN1_TransmitFIFOStatusGet(CAN1_TX_TXQ) == CAN_TX_FIFO_FULL);
+          }
 
-				// general broadcast msg
-				msg = get_TM_General_Broadcast_msg(temps, module_id);
-				CAN1_Transmit(CAN1_TX_TXQ, &msg);
-				while (CAN1_TransmitFIFOStatusGet(CAN1_TX_TXQ) == CAN_TX_FIFO_FULL);
+          // Thermistor broadcast msg
+          uint8_t multiplexor = 3;
+          msg = get_Therm_Broadcast_msg(temps, module_id, multiplexor);
+          CAN1_Transmit(CAN1_TX_TXQ, &msg);
+          while(CAN1_TransmitFIFOStatusGet(CAN1_TX_TXQ) == CAN_TX_FIFO_FULL);
 		    }
 			break;
 		default:
