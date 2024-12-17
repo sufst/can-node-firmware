@@ -43,6 +43,8 @@ CAN_MSG_OBJ get_PD_Broadcast_msg(ADC_channel_t voltages_array[], uint8_t module_
     msg.field.frameType = CAN_FRAME_DATA;
     msg.field.idType = CAN_FRAME_EXT;
     msg.data = msg_data;
+    
+    return msg;
 }
 
 CAN_MSG_OBJ get_Therm_Broadcast_msg(int8_t temps_array[], uint8_t module_id, uint8_t multiplexor) {
@@ -61,4 +63,6 @@ CAN_MSG_OBJ get_Therm_Broadcast_msg(int8_t temps_array[], uint8_t module_id, uin
     msg.field.frameType = CAN_FRAME_DATA;
     msg.field.idType = CAN_FRAME_EXT;
     msg.data = msg_data;
+    
+    return msg;
 }

@@ -15,6 +15,7 @@
         <itemPath>mcc_generated_files/adc.h</itemPath>
         <itemPath>mcc_generated_files/interrupt_manager.h</itemPath>
         <itemPath>mcc_generated_files/clkref.h</itemPath>
+        <itemPath>mcc_generated_files/spi1.h</itemPath>
       </logicalFolder>
       <itemPath>can_msgs.h</itemPath>
       <itemPath>config.h</itemPath>
@@ -42,6 +43,7 @@
         <itemPath>mcc_generated_files/adc.c</itemPath>
         <itemPath>mcc_generated_files/interrupt_manager.c</itemPath>
         <itemPath>mcc_generated_files/clkref.c</itemPath>
+        <itemPath>mcc_generated_files/spi1.c</itemPath>
       </logicalFolder>
       <itemPath>main.c</itemPath>
       <itemPath>can_msgs.c</itemPath>

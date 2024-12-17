@@ -38696,9 +38696,9 @@ unsigned char __t1rd16on(void);
 unsigned char __t3rd16on(void);
 # 33 "C:\\Program Files\\Microchip\\xc8\\v2.46\\pic\\include\\xc.h" 2 3
 # 54 "mcc_generated_files/pin_manager.h" 2
-# 462 "mcc_generated_files/pin_manager.h"
+# 506 "mcc_generated_files/pin_manager.h"
 void PIN_MANAGER_Initialize (void);
-# 474 "mcc_generated_files/pin_manager.h"
+# 518 "mcc_generated_files/pin_manager.h"
 void PIN_MANAGER_IOC(void);
 # 49 "mcc_generated_files/pin_manager.c" 2
 
@@ -38714,7 +38714,7 @@ void PIN_MANAGER_Initialize(void)
 
     LATE = 0x00;
     LATD = 0x00;
-    LATA = 0x00;
+    LATA = 0x20;
     LATB = 0x00;
     LATC = 0x00;
 
@@ -38722,19 +38722,19 @@ void PIN_MANAGER_Initialize(void)
 
 
     TRISE = 0x07;
-    TRISA = 0xFF;
+    TRISA = 0xDF;
     TRISB = 0xDF;
-    TRISC = 0xFF;
-    TRISD = 0xF9;
+    TRISC = 0xD6;
+    TRISD = 0xFD;
 
 
 
 
-    ANSELD = 0xCC;
-    ANSELC = 0xCF;
+    ANSELD = 0x9C;
+    ANSELC = 0xE7;
     ANSELB = 0xFF;
     ANSELE = 0x07;
-    ANSELA = 0xFF;
+    ANSELA = 0xEF;
 
 
 
@@ -38751,7 +38751,7 @@ void PIN_MANAGER_Initialize(void)
     ODCONE = 0x00;
     ODCONA = 0x00;
     ODCONB = 0x00;
-    ODCONC = 0x00;
+    ODCONC = 0x08;
     ODCOND = 0x00;
 
 
@@ -38772,8 +38772,12 @@ void PIN_MANAGER_Initialize(void)
     INLVLD = 0xFF;
     INLVLE = 0x0F;
 # 127 "mcc_generated_files/pin_manager.c"
+    SPI1SCKPPS = 0x13;
+    RC3PPS = 0x31;
     CANRXPPS = 0x18;
     RD1PPS = 0x46;
+    RC5PPS = 0x32;
+    SPI1SDIPPS = 0x14;
 }
 
 void PIN_MANAGER_IOC(void)

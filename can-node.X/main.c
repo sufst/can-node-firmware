@@ -84,10 +84,8 @@ void main(void)
 	ADC_SelectContext(CONTEXT_1);
     
 //     read module ID from config resistors
-    module_id = (1 - CFG_R3_GetValue()) * 1 +
-                (1 - CFG_R4_GetValue()) * 2 +
-                (1 - CFG_R5_GetValue()) * 4 +
-                (1 - CFG_R6_GetValue()) * 8 + 1;
+    module_id = (1 - CFG_R5_GetValue()) +
+                (1 - GFG_R6_GetValue()) * 2;
         
     while (1)
     {   

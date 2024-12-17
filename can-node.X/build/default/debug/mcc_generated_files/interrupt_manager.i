@@ -38706,9 +38706,9 @@ unsigned char __t3rd16on(void);
 # 50 "mcc_generated_files/mcc.h" 2
 
 # 1 "mcc_generated_files/pin_manager.h" 1
-# 462 "mcc_generated_files/pin_manager.h"
+# 506 "mcc_generated_files/pin_manager.h"
 void PIN_MANAGER_Initialize (void);
-# 474 "mcc_generated_files/pin_manager.h"
+# 518 "mcc_generated_files/pin_manager.h"
 void PIN_MANAGER_IOC(void);
 # 51 "mcc_generated_files/mcc.h" 2
 
@@ -38890,18 +38890,18 @@ typedef uint16_t adc_result_t;
 
 typedef enum
 {
-    PD_5 = 0x2,
-    PD_6 = 0x3,
-    PD_7 = 0x4,
+    PD_5 = 0x1,
+    PD_6 = 0x2,
+    PD_7 = 0x3,
     PD_1 = 0x9,
     PD_2 = 0xA,
     PD_3 = 0xB,
     PD_4 = 0xC,
     PD_8 = 0x11,
     PD_9 = 0x12,
-    PD_10 = 0x13,
-    THERM_1 = 0x16,
-    THERM_2 = 0x17,
+    THERM_1 = 0x17,
+    THERM_2 = 0x1C,
+    PD_10 = 0x1F,
     channel_VSS = 0x3B,
     channel_Temp = 0x3C,
     channel_DAC1 = 0x3D,
@@ -39049,6 +39049,11 @@ void ADC_ADCH4_ISR(void);
 # 1184 "mcc_generated_files/adc.h"
 void ADC_SetContext4ThresholdInterruptHandler(void (* InterruptHandler)(void));
 # 56 "mcc_generated_files/mcc.h" 2
+
+# 1 "mcc_generated_files/clkref.h" 1
+# 92 "mcc_generated_files/clkref.h"
+void CLKREF_Initialize(void);
+# 57 "mcc_generated_files/mcc.h" 2
 
 # 1 "mcc_generated_files/can1.h" 1
 # 56 "mcc_generated_files/can1.h"
@@ -39213,17 +39218,29 @@ void CAN1_SetFIFO1nullHandler(void (*handler)(void));
 
 
 void CAN1_ISR(void);
-# 57 "mcc_generated_files/mcc.h" 2
-
-# 1 "mcc_generated_files/clkref.h" 1
-# 92 "mcc_generated_files/clkref.h"
-void CLKREF_Initialize(void);
 # 58 "mcc_generated_files/mcc.h" 2
-# 73 "mcc_generated_files/mcc.h"
+
+# 1 "mcc_generated_files/spi1.h" 1
+# 59 "mcc_generated_files/spi1.h"
+typedef enum {
+    SPI1_DEFAULT
+} spi1_modes_t;
+
+void SPI1_Initialize(void);
+_Bool SPI1_Open(spi1_modes_t spi1UniqueConfiguration);
+void SPI1_Close(void);
+uint8_t SPI1_ExchangeByte(uint8_t data);
+void SPI1_ExchangeBlock(void *block, size_t blockSize);
+void SPI1_WriteBlock(void *block, size_t blockSize);
+void SPI1_ReadBlock(void *block, size_t blockSize);
+void SPI1_WriteByte(uint8_t byte);
+uint8_t SPI1_ReadByte(void);
+# 59 "mcc_generated_files/mcc.h" 2
+# 74 "mcc_generated_files/mcc.h"
 void SYSTEM_Initialize(void);
-# 86 "mcc_generated_files/mcc.h"
+# 87 "mcc_generated_files/mcc.h"
 void OSCILLATOR_Initialize(void);
-# 99 "mcc_generated_files/mcc.h"
+# 100 "mcc_generated_files/mcc.h"
 void PMD_Initialize(void);
 # 50 "mcc_generated_files/interrupt_manager.c" 2
 

@@ -1,8 +1,8 @@
 Version 4.0 HI-TECH Software Intermediate Code
 "48 main.c
 [; ;main.c: 48: ADC_channel_t therm_to_adc_channel[] = {
-[c E23239 2 3 4 9 10 11 12 17 18 19 22 23 59 60 61 62 63 .. ]
-[n E23239 . PD_5 PD_6 PD_7 PD_1 PD_2 PD_3 PD_4 PD_8 PD_9 PD_10 THERM_1 THERM_2 channel_VSS channel_Temp channel_DAC1 channel_FVR_Buffer1 channel_FVR_Buffer2  ]
+[c E23239 1 2 3 9 10 11 12 17 18 23 28 31 59 60 61 62 63 .. ]
+[n E23239 . PD_5 PD_6 PD_7 PD_1 PD_2 PD_3 PD_4 PD_8 PD_9 THERM_1 THERM_2 PD_10 channel_VSS channel_Temp channel_DAC1 channel_FVR_Buffer1 channel_FVR_Buffer2  ]
 [p mainexit ]
 "69 ./mcc_generated_files/can_types.h
 [; ;./mcc_generated_files/can_types.h: 69:     {
@@ -16,8 +16,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;./mcc_generated_files/can_types.h: 79: {
 [s S3279 `ul 1 `S3277 1 `*uc 1 ]
 [n S3279 . msgId field data ]
-"73 ./mcc_generated_files/mcc.h
-[; ;./mcc_generated_files/mcc.h: 73: void SYSTEM_Initialize(void);
+"74 ./mcc_generated_files/mcc.h
+[; ;./mcc_generated_files/mcc.h: 74: void SYSTEM_Initialize(void);
 [v _SYSTEM_Initialize `(v ~T0 @X0 0 ef ]
 "84 main.c
 [; ;main.c: 84:  ADC_SelectContext(CONTEXT_1);
@@ -27,15 +27,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 "232 ./mcc_generated_files/adc.h
 [; ;./mcc_generated_files/adc.h: 232: __attribute__((inline)) void ADC_SelectContext(ADC_context_t context);
 [v _ADC_SelectContext `TF23269 ~T0 @X0 0 e ]
-"4250 C:/Program Files/Microchip/MPLABX/v6.20/packs/Microchip/PIC18F-Q_DFP/1.24.430/xc8\pic\include\proc\pic18f47q84.h
-[s S3176 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S3176 . RC0 RC1 RC2 RC3 RC4 RC5 RC6 RC7 ]
-"4249
-[u S3175 `S3176 1 ]
-[n S3175 . . ]
-"4261
-[v _PORTCbits `VS3175 ~T0 @X0 0 e@1232 ]
-"4312
+"4312 C:/Program Files/Microchip/MPLABX/v6.20/packs/Microchip/PIC18F-Q_DFP/1.24.430/xc8\pic\include\proc\pic18f47q84.h
 [; ;C:/Program Files/Microchip/MPLABX/v6.20/packs/Microchip/PIC18F-Q_DFP/1.24.430/xc8\pic\include\proc\pic18f47q84.h: 4312:         unsigned CLKSEL1 :1;
 [s S3178 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
 [n S3178 . RD0 RD1 RD2 RD3 RD4 RD5 RD6 RD7 ]
@@ -55,40 +47,40 @@ Version 4.0 HI-TECH Software Intermediate Code
 "357
 [; ;./mcc_generated_files/adc.h: 357: adc_result_t ADC_GetConversionResult(void);
 [v _ADC_GetConversionResult `(us ~T0 @X0 0 ef ]
-"118 main.c
-[; ;main.c: 118:    CAN1_OperationModeSet(CAN_NORMAL_2_0_MODE);
-[c E23388 0 1 2 3 4 5 6 7 .. ]
-[n E23388 . CAN_NORMAL_FD_MODE CAN_DISABLE_MODE CAN_INTERNAL_LOOPBACK_MODE CAN_LISTEN_ONLY_MODE CAN_CONFIGURATION_MODE CAN_EXTERNAL_LOOPBACK_MODE CAN_NORMAL_2_0_MODE CAN_RESTRICTED_OPERATION_MODE  ]
-[c E23398 0 1 2 .. ]
-[n E23398 . CAN_OP_MODE_REQUEST_SUCCESS CAN_OP_MODE_REQUEST_FAIL CAN_OP_MODE_SYS_ERROR_OCCURED  ]
+"116 main.c
+[; ;main.c: 116:    CAN1_OperationModeSet(CAN_NORMAL_2_0_MODE);
+[c E23389 0 1 2 3 4 5 6 7 .. ]
+[n E23389 . CAN_NORMAL_FD_MODE CAN_DISABLE_MODE CAN_INTERNAL_LOOPBACK_MODE CAN_LISTEN_ONLY_MODE CAN_CONFIGURATION_MODE CAN_EXTERNAL_LOOPBACK_MODE CAN_NORMAL_2_0_MODE CAN_RESTRICTED_OPERATION_MODE  ]
+[c E23399 0 1 2 .. ]
+[n E23399 . CAN_OP_MODE_REQUEST_SUCCESS CAN_OP_MODE_REQUEST_FAIL CAN_OP_MODE_SYS_ERROR_OCCURED  ]
 "145 ./mcc_generated_files/can1.h
 [; ;./mcc_generated_files/can1.h: 145: CAN_OP_MODE_STATUS CAN1_OperationModeSet(const CAN_OP_MODES reqestMode);
-[v _CAN1_OperationModeSet `(E23398 ~T0 @X0 0 ef1`CE23388 ]
-"122 main.c
-[; ;main.c: 122:       if(CAN_TX_FIFO_AVAILABLE == (CAN1_TransmitFIFOStatusGet(TXQ)))
-[c E23403 0 1 .. ]
-[n E23403 . CAN_TX_FIFO_FULL CAN_TX_FIFO_AVAILABLE  ]
-[c E23425 0 1 .. ]
-[n E23425 . TXQ FIFO1  ]
+[v _CAN1_OperationModeSet `(E23399 ~T0 @X0 0 ef1`CE23389 ]
+"120 main.c
+[; ;main.c: 120:       if(CAN_TX_FIFO_AVAILABLE == (CAN1_TransmitFIFOStatusGet(TXQ)))
+[c E23404 0 1 .. ]
+[n E23404 . CAN_TX_FIFO_FULL CAN_TX_FIFO_AVAILABLE  ]
+[c E23426 0 1 .. ]
+[n E23426 . TXQ FIFO1  ]
 "724 ./mcc_generated_files/can1.h
 [; ;./mcc_generated_files/can1.h: 724: CAN_TX_FIFO_STATUS CAN1_TransmitFIFOStatusGet(const CAN1_TX_FIFO_CHANNELS fifoChannel);
-[v _CAN1_TransmitFIFOStatusGet `(E23403 ~T0 @X0 0 ef1`CE23425 ]
+[v _CAN1_TransmitFIFOStatusGet `(E23404 ~T0 @X0 0 ef1`CE23426 ]
 "35 ./can_msgs.h
 [; ;./can_msgs.h: 35: CAN_MSG_OBJ get_PD_Broadcast_msg(ADC_channel_t voltages_array[], uint8_t module_id, uint8_t multiplexor);
 [v _get_PD_Broadcast_msg `(S3279 ~T0 @X0 0 ef3`*E23239`uc`uc ]
-"128 main.c
-[; ;main.c: 128:             CAN1_Transmit(TXQ, &msg);
-[c E23382 0 1 2 3 .. ]
-[n E23382 . CAN_TX_MSG_REQUEST_SUCCESS CAN_TX_MSG_REQUEST_DLC_EXCEED_ERROR CAN_TX_MSG_REQUEST_BRS_ERROR CAN_TX_MSG_REQUEST_FIFO_FULL  ]
+"126 main.c
+[; ;main.c: 126:             CAN1_Transmit(TXQ, &msg);
+[c E23383 0 1 2 3 .. ]
+[n E23383 . CAN_TX_MSG_REQUEST_SUCCESS CAN_TX_MSG_REQUEST_DLC_EXCEED_ERROR CAN_TX_MSG_REQUEST_BRS_ERROR CAN_TX_MSG_REQUEST_FIFO_FULL  ]
 "243 ./mcc_generated_files/can1.h
 [; ;./mcc_generated_files/can1.h: 243: CAN_TX_MSG_REQUEST_STATUS CAN1_Transmit(const CAN1_TX_FIFO_CHANNELS fifoChannel, CAN_MSG_OBJ *txCanMsg);
-[v _CAN1_Transmit `(E23382 ~T0 @X0 0 ef2`CE23425`*S3279 ]
+[v _CAN1_Transmit `(E23383 ~T0 @X0 0 ef2`CE23426`*S3279 ]
 "37 ./can_msgs.h
 [; ;./can_msgs.h: 37: CAN_MSG_OBJ get_Therm_Broadcast_msg(int8_t temps_array[], uint8_t module_id, uint8_t multiplexor);
 [v _get_Therm_Broadcast_msg `(S3279 ~T0 @X0 0 ef3`*c`uc`uc ]
 "183 ./mcc_generated_files/can1.h
 [; ;./mcc_generated_files/can1.h: 183: CAN_OP_MODES CAN1_OperationModeGet(void);
-[v _CAN1_OperationModeGet `(E23388 ~T0 @X0 0 ef ]
+[v _CAN1_OperationModeGet `(E23389 ~T0 @X0 0 ef ]
 [v F205 `(v ~T0 @X0 1 tf1`ul ]
 "20 C:\Program Files\Microchip\xc8\v2.46\pic\include\builtins.h
 [v __delay `JF205 ~T0 @X0 0 e ]
@@ -7798,8 +7790,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [v _therm_to_adc_channel `E23239 ~T0 @X0 -> 2 `i e ]
 [i _therm_to_adc_channel
 :U ..
+. `E23239 9
 . `E23239 10
-. `E23239 11
 ..
 ]
 "53
@@ -7816,7 +7808,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 . `E23239 2
 . `E23239 7
 . `E23239 8
-. `E23239 9
+. `E23239 11
 ..
 ]
 "67
@@ -7871,188 +7863,188 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;main.c: 84:  ADC_SelectContext(CONTEXT_1);
 [e ( _ADC_SelectContext (1 . `E23258 0 ]
 "87
-[; ;main.c: 87:     module_id = (1 - PORTCbits.RC4) * 1 +
-[e = _module_id -> + + + + * - -> 1 `i -> . . _PORTCbits 0 4 `i -> 1 `i * - -> 1 `i -> . . _PORTCbits 0 5 `i -> 2 `i * - -> 1 `i -> . . _PORTDbits 0 4 `i -> 4 `i * - -> 1 `i -> . . _PORTDbits 0 5 `i -> 8 `i -> 1 `i `uc ]
-"92
-[; ;main.c: 92:     while (1)
+[; ;main.c: 87:     module_id = (1 - PORTDbits.RD5) +
+[e = _module_id -> + - -> 1 `i -> . . _PORTDbits 0 5 `i * - -> 1 `i -> . . _PORTDbits 0 6 `i -> 2 `i `uc ]
+"90
+[; ;main.c: 90:     while (1)
 [e :U 3283 ]
-"93
-[; ;main.c: 93:     {
+"91
+[; ;main.c: 91:     {
 {
-"95
-[; ;main.c: 95:   for (uint8_t therm_i = 1; therm_i <= 2; therm_i++)
+"93
+[; ;main.c: 93:   for (uint8_t therm_i = 1; therm_i <= 2; therm_i++)
 {
 [v _therm_i `uc ~T0 @X0 1 a ]
 [e = _therm_i -> -> 1 `i `uc ]
 [e $ <= -> _therm_i `i -> 2 `i 3285  ]
 [e $U 3286  ]
 [e :U 3285 ]
-"96
-[; ;main.c: 96:   {
+"94
+[; ;main.c: 94:   {
 {
-"97
-[; ;main.c: 97:       ADC_StartConversion(therm_to_adc_channel[therm_i]);
+"95
+[; ;main.c: 95:       ADC_StartConversion(therm_to_adc_channel[therm_i]);
 [e ( _ADC_StartConversion (1 *U + &U _therm_to_adc_channel * -> _therm_i `ux -> -> # *U &U _therm_to_adc_channel `ui `ux ]
-"98
-[; ;main.c: 98:       while(!ADC_IsConversionDone());
+"96
+[; ;main.c: 96:       while(!ADC_IsConversionDone());
 [e $U 3288  ]
 [e :U 3289 ]
 [e :U 3288 ]
 [e $ ! != -> ( _ADC_IsConversionDone ..  `i -> 0 `i 3289  ]
 [e :U 3290 ]
-"99
-[; ;main.c: 99:       adc_result_t reading = ADC_GetConversionResult();
+"97
+[; ;main.c: 97:       adc_result_t reading = ADC_GetConversionResult();
 [v _reading `us ~T0 @X0 1 a ]
 [e = _reading ( _ADC_GetConversionResult ..  ]
-"100
-[; ;main.c: 100:       temps[therm_i-1] = adc_to_temp(reading);
+"98
+[; ;main.c: 98:       temps[therm_i-1] = adc_to_temp(reading);
 [e = *U + &U _temps * -> -> - -> _therm_i `i -> 1 `i `ui `ux -> -> # *U &U _temps `ui `ux ( _adc_to_temp (1 _reading ]
-"101
-[; ;main.c: 101:   }
+"99
+[; ;main.c: 99:   }
 }
 [e ++ _therm_i -> -> 1 `i `uc ]
 [e $ <= -> _therm_i `i -> 2 `i 3285  ]
 [e :U 3286 ]
 }
-"103
-[; ;main.c: 103:     for (uint8_t pd_i = 1; pd_i <= 10; pd_i++)
+"101
+[; ;main.c: 101:     for (uint8_t pd_i = 1; pd_i <= 10; pd_i++)
 {
 [v _pd_i `uc ~T0 @X0 1 a ]
 [e = _pd_i -> -> 1 `i `uc ]
 [e $ <= -> _pd_i `i -> 10 `i 3291  ]
 [e $U 3292  ]
 [e :U 3291 ]
-"104
-[; ;main.c: 104:     {
+"102
+[; ;main.c: 102:     {
 {
-"105
-[; ;main.c: 105:       ADC_StartConversion(pd_to_adc_channel[pd_i]);
+"103
+[; ;main.c: 103:       ADC_StartConversion(pd_to_adc_channel[pd_i]);
 [e ( _ADC_StartConversion (1 *U + &U _pd_to_adc_channel * -> _pd_i `ux -> -> # *U &U _pd_to_adc_channel `ui `ux ]
-"106
-[; ;main.c: 106:       while(!ADC_IsConversionDone());
+"104
+[; ;main.c: 104:       while(!ADC_IsConversionDone());
 [e $U 3294  ]
 [e :U 3295 ]
 [e :U 3294 ]
 [e $ ! != -> ( _ADC_IsConversionDone ..  `i -> 0 `i 3295  ]
 [e :U 3296 ]
-"107
-[; ;main.c: 107:       adc_result_t reading = ADC_GetConversionResult();
+"105
+[; ;main.c: 105:       adc_result_t reading = ADC_GetConversionResult();
 [v _reading `us ~T0 @X0 1 a ]
 [e = _reading ( _ADC_GetConversionResult ..  ]
-"110
-[; ;main.c: 110:       pd_voltages[pd_i-1] = reading;
+"108
+[; ;main.c: 108:       pd_voltages[pd_i-1] = reading;
 [e = *U + &U _pd_voltages * -> -> - -> _pd_i `i -> 1 `i `ui `ux -> -> # *U &U _pd_voltages `ui `ux -> _reading `E23239 ]
-"111
-[; ;main.c: 111:     }
+"109
+[; ;main.c: 109:     }
 }
 [e ++ _pd_i -> -> 1 `i `uc ]
 [e $ <= -> _pd_i `i -> 10 `i 3291  ]
 [e :U 3292 ]
 }
-"115
-[; ;main.c: 115:   switch (CAN1_OperationModeGet())
+"113
+[; ;main.c: 113:   switch (CAN1_OperationModeGet())
 [e $U 3298  ]
-"116
-[; ;main.c: 116:   {
+"114
+[; ;main.c: 114:   {
 {
-"117
-[; ;main.c: 117:   case CAN_CONFIGURATION_MODE:
+"115
+[; ;main.c: 115:   case CAN_CONFIGURATION_MODE:
 [e :U 3299 ]
-"118
-[; ;main.c: 118:    CAN1_OperationModeSet(CAN_NORMAL_2_0_MODE);
-[e ( _CAN1_OperationModeSet (1 . `E23388 6 ]
-"119
-[; ;main.c: 119:    break;
+"116
+[; ;main.c: 116:    CAN1_OperationModeSet(CAN_NORMAL_2_0_MODE);
+[e ( _CAN1_OperationModeSet (1 . `E23389 6 ]
+"117
+[; ;main.c: 117:    break;
 [e $U 3297  ]
-"120
-[; ;main.c: 120:   case CAN_NORMAL_2_0_MODE:
+"118
+[; ;main.c: 118:   case CAN_NORMAL_2_0_MODE:
 [e :U 3300 ]
-"122
-[; ;main.c: 122:       if(CAN_TX_FIFO_AVAILABLE == (CAN1_TransmitFIFOStatusGet(TXQ)))
-[e $ ! == -> . `E23403 1 `ui -> ( _CAN1_TransmitFIFOStatusGet (1 . `E23425 0 `ui 3301  ]
-"123
-[; ;main.c: 123:       {
+"120
+[; ;main.c: 120:       if(CAN_TX_FIFO_AVAILABLE == (CAN1_TransmitFIFOStatusGet(TXQ)))
+[e $ ! == -> . `E23404 1 `ui -> ( _CAN1_TransmitFIFOStatusGet (1 . `E23426 0 `ui 3301  ]
+"121
+[; ;main.c: 121:       {
 {
-"125
-[; ;main.c: 125:           for (uint8_t multiplexor = 0; multiplexor <= 1; multiplexor++)
+"123
+[; ;main.c: 123:           for (uint8_t multiplexor = 0; multiplexor <= 1; multiplexor++)
 {
 [v _multiplexor `uc ~T0 @X0 1 a ]
 [e = _multiplexor -> -> 0 `i `uc ]
 [e $ <= -> _multiplexor `i -> 1 `i 3302  ]
 [e $U 3303  ]
 [e :U 3302 ]
-"126
-[; ;main.c: 126:           {
+"124
+[; ;main.c: 124:           {
 {
-"127
-[; ;main.c: 127:             msg = get_PD_Broadcast_msg(pd_voltages, module_id, multiplexor);
+"125
+[; ;main.c: 125:             msg = get_PD_Broadcast_msg(pd_voltages, module_id, multiplexor);
 [e = _msg ( _get_PD_Broadcast_msg (3 , , &U _pd_voltages _module_id _multiplexor ]
-"128
-[; ;main.c: 128:             CAN1_Transmit(TXQ, &msg);
-[e ( _CAN1_Transmit (2 , . `E23425 0 &U _msg ]
-"129
-[; ;main.c: 129:             while(CAN1_TransmitFIFOStatusGet(TXQ) == CAN_TX_FIFO_FULL);
+"126
+[; ;main.c: 126:             CAN1_Transmit(TXQ, &msg);
+[e ( _CAN1_Transmit (2 , . `E23426 0 &U _msg ]
+"127
+[; ;main.c: 127:             while(CAN1_TransmitFIFOStatusGet(TXQ) == CAN_TX_FIFO_FULL);
 [e $U 3305  ]
 [e :U 3306 ]
 [e :U 3305 ]
-[e $ == -> ( _CAN1_TransmitFIFOStatusGet (1 . `E23425 0 `ui -> . `E23403 0 `ui 3306  ]
+[e $ == -> ( _CAN1_TransmitFIFOStatusGet (1 . `E23426 0 `ui -> . `E23404 0 `ui 3306  ]
 [e :U 3307 ]
-"130
-[; ;main.c: 130:           }
+"128
+[; ;main.c: 128:           }
 }
 [e ++ _multiplexor -> -> 1 `i `uc ]
 [e $ <= -> _multiplexor `i -> 1 `i 3302  ]
 [e :U 3303 ]
 }
-"133
-[; ;main.c: 133:           uint8_t multiplexor = 3;
+"131
+[; ;main.c: 131:           uint8_t multiplexor = 3;
 [v _multiplexor `uc ~T0 @X0 1 a ]
 [e = _multiplexor -> -> 3 `i `uc ]
-"134
-[; ;main.c: 134:           msg = get_Therm_Broadcast_msg(temps, module_id, multiplexor);
+"132
+[; ;main.c: 132:           msg = get_Therm_Broadcast_msg(temps, module_id, multiplexor);
 [e = _msg ( _get_Therm_Broadcast_msg (3 , , &U _temps _module_id _multiplexor ]
-"135
-[; ;main.c: 135:           CAN1_Transmit(TXQ, &msg);
-[e ( _CAN1_Transmit (2 , . `E23425 0 &U _msg ]
-"136
-[; ;main.c: 136:           while(CAN1_TransmitFIFOStatusGet(TXQ) == CAN_TX_FIFO_FULL);
+"133
+[; ;main.c: 133:           CAN1_Transmit(TXQ, &msg);
+[e ( _CAN1_Transmit (2 , . `E23426 0 &U _msg ]
+"134
+[; ;main.c: 134:           while(CAN1_TransmitFIFOStatusGet(TXQ) == CAN_TX_FIFO_FULL);
 [e $U 3308  ]
 [e :U 3309 ]
 [e :U 3308 ]
-[e $ == -> ( _CAN1_TransmitFIFOStatusGet (1 . `E23425 0 `ui -> . `E23403 0 `ui 3309  ]
+[e $ == -> ( _CAN1_TransmitFIFOStatusGet (1 . `E23426 0 `ui -> . `E23404 0 `ui 3309  ]
 [e :U 3310 ]
-"137
-[; ;main.c: 137:       }
+"135
+[; ;main.c: 135:       }
 }
 [e :U 3301 ]
+"136
+[; ;main.c: 136:    break;
+[e $U 3297  ]
+"137
+[; ;main.c: 137:   default:
+[e :U 3311 ]
 "138
 [; ;main.c: 138:    break;
 [e $U 3297  ]
 "139
-[; ;main.c: 139:   default:
-[e :U 3311 ]
-"140
-[; ;main.c: 140:    break;
-[e $U 3297  ]
-"141
-[; ;main.c: 141:   }
+[; ;main.c: 139:   }
 }
 [e $U 3297  ]
 [e :U 3298 ]
-[e [\ -> ( _CAN1_OperationModeGet ..  `ui , $ -> . `E23388 4 `ui 3299
- , $ -> . `E23388 6 `ui 3300
+[e [\ -> ( _CAN1_OperationModeGet ..  `ui , $ -> . `E23389 4 `ui 3299
+ , $ -> . `E23389 6 `ui 3300
  3311 ]
 [e :U 3297 ]
-"142
-[; ;main.c: 142:   _delay((unsigned long)((100)*(20000000/4000.0)));
+"140
+[; ;main.c: 140:   _delay((unsigned long)((100)*(20000000/4000.0)));
 [e ( __delay (1 -> * -> -> 100 `i `d / -> -> 20000000 `l `d .4000.0 `ul ]
-"143
-[; ;main.c: 143:     }
+"141
+[; ;main.c: 141:     }
 }
 [e :U 3282 ]
 [e $U 3283  ]
 [e :U 3284 ]
-"144
-[; ;main.c: 144: }
+"142
+[; ;main.c: 142: }
 [e :UE 3281 ]
 }

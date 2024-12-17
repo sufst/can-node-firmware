@@ -2,7 +2,7 @@
 
 manifest_file_version: 1.0.0
 project: can-node
-creation_date: 2024-09-24T10:16:37.561+01:00[Europe/London]
+creation_date: 2024-12-17T20:19:58.694Z[Europe/London]
 operating_system: Windows 10
 mcc_mode: IDE
 mcc_mode_version: v6.20
@@ -16,6 +16,6 @@ is_using_prerelease_versions: false
 mcc_content_registries: https://registry.npmjs.org/
 device_library: {library_class: com.microchip.mcc.mcu8.Mcu8PeripheralLibrary, name: PIC10
     / PIC12 / PIC16 / PIC18 MCUs, version: 1.82.1}
-packs: {name: PIC18F-Q_DFP, version: 1.25.433}
+packs: {name: PIC18F-Q_DFP, version: 1.26.442}
 modules:
 - {name: com.microchip.mcc.mcu8.Mcu8PeripheralLibrary, type: CLASSIC, version: 1.82.1}
