@@ -3,6 +3,9 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;main.c: 48: ADC_channel_t therm_to_adc_channel[] = {
 [c E23239 1 2 3 9 10 11 12 17 18 23 28 31 59 60 61 62 63 .. ]
 [n E23239 . PD_5 PD_6 PD_7 PD_1 PD_2 PD_3 PD_4 PD_8 PD_9 THERM_1 THERM_2 PD_10 channel_VSS channel_Temp channel_DAC1 channel_FVR_Buffer1 channel_FVR_Buffer2  ]
+"66 ./mcc_generated_files/spi1.h
+[; ;./mcc_generated_files/spi1.h: 66: uint8_t SPI1_ExchangeByte(uint8_t data);
+[v _SPI1_ExchangeByte `(uc ~T0 @X0 0 ef1`uc ]
 [p mainexit ]
 "69 ./mcc_generated_files/can_types.h
 [; ;./mcc_generated_files/can_types.h: 69:     {
@@ -19,8 +22,11 @@ Version 4.0 HI-TECH Software Intermediate Code
 "74 ./mcc_generated_files/mcc.h
 [; ;./mcc_generated_files/mcc.h: 74: void SYSTEM_Initialize(void);
 [v _SYSTEM_Initialize `(v ~T0 @X0 0 ef ]
-"84 main.c
-[; ;main.c: 84:  ADC_SelectContext(CONTEXT_1);
+"63 ./mcc_generated_files/spi1.h
+[; ;./mcc_generated_files/spi1.h: 63: void SPI1_Initialize(void);
+[v _SPI1_Initialize `(v ~T0 @X0 0 ef ]
+"92 main.c
+[; ;main.c: 92: ADC_SelectContext(CONTEXT_1);
 [c E23258 0 .. ]
 [n E23258 . CONTEXT_1  ]
 [v F23269 `(v ~T0 @X0 1 tf1`E23258 ]
@@ -47,8 +53,11 @@ Version 4.0 HI-TECH Software Intermediate Code
 "357
 [; ;./mcc_generated_files/adc.h: 357: adc_result_t ADC_GetConversionResult(void);
 [v _ADC_GetConversionResult `(us ~T0 @X0 0 ef ]
-"116 main.c
-[; ;main.c: 116:    CAN1_OperationModeSet(CAN_NORMAL_2_0_MODE);
+"121 C:\Program Files\Microchip\xc8\v2.46\pic\include\c99\stdio.h
+[; ;C:\Program Files\Microchip\xc8\v2.46\pic\include\c99\stdio.h: 121: int sprintf(char *restrict, const char *restrict, ...);
+[v _sprintf `(i ~T0 @X0 0 e1v`*uc`*Cuc ]
+"132 main.c
+[; ;main.c: 132:     CAN1_OperationModeSet(CAN_NORMAL_2_0_MODE);
 [c E23389 0 1 2 3 4 5 6 7 .. ]
 [n E23389 . CAN_NORMAL_FD_MODE CAN_DISABLE_MODE CAN_INTERNAL_LOOPBACK_MODE CAN_LISTEN_ONLY_MODE CAN_CONFIGURATION_MODE CAN_EXTERNAL_LOOPBACK_MODE CAN_NORMAL_2_0_MODE CAN_RESTRICTED_OPERATION_MODE  ]
 [c E23399 0 1 2 .. ]
@@ -56,8 +65,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 "145 ./mcc_generated_files/can1.h
 [; ;./mcc_generated_files/can1.h: 145: CAN_OP_MODE_STATUS CAN1_OperationModeSet(const CAN_OP_MODES reqestMode);
 [v _CAN1_OperationModeSet `(E23399 ~T0 @X0 0 ef1`CE23389 ]
-"120 main.c
-[; ;main.c: 120:       if(CAN_TX_FIFO_AVAILABLE == (CAN1_TransmitFIFOStatusGet(TXQ)))
+"136 main.c
+[; ;main.c: 136:       if(CAN_TX_FIFO_AVAILABLE == (CAN1_TransmitFIFOStatusGet(TXQ)))
 [c E23404 0 1 .. ]
 [n E23404 . CAN_TX_FIFO_FULL CAN_TX_FIFO_AVAILABLE  ]
 [c E23426 0 1 .. ]
@@ -68,8 +77,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 "35 ./can_msgs.h
 [; ;./can_msgs.h: 35: CAN_MSG_OBJ get_PD_Broadcast_msg(ADC_channel_t voltages_array[], uint8_t module_id, uint8_t multiplexor);
 [v _get_PD_Broadcast_msg `(S3279 ~T0 @X0 0 ef3`*E23239`uc`uc ]
-"126 main.c
-[; ;main.c: 126:             CAN1_Transmit(TXQ, &msg);
+"142 main.c
+[; ;main.c: 142:           CAN1_Transmit(TXQ, &msg);
 [c E23383 0 1 2 3 .. ]
 [n E23383 . CAN_TX_MSG_REQUEST_SUCCESS CAN_TX_MSG_REQUEST_DLC_EXCEED_ERROR CAN_TX_MSG_REQUEST_BRS_ERROR CAN_TX_MSG_REQUEST_FIFO_FULL  ]
 "243 ./mcc_generated_files/can1.h
@@ -7811,240 +7820,319 @@ Version 4.0 HI-TECH Software Intermediate Code
 . `E23239 11
 ..
 ]
+"66
+[; ;main.c: 66: void SPI_SendString(const char *str)
+[v _SPI_SendString `(v ~T0 @X0 1 ef1`*Cuc ]
 "67
-[; ;main.c: 67: int8_t adc_to_temp(adc_result_t reading)
-[v _adc_to_temp `(c ~T0 @X0 1 ef1`us ]
-"68
-[; ;main.c: 68: {
+[; ;main.c: 67: {
 {
-[e :U _adc_to_temp ]
+[e :U _SPI_SendString ]
+"66
+[; ;main.c: 66: void SPI_SendString(const char *str)
+[v _str `*Cuc ~T0 @X0 1 r1 ]
 "67
-[; ;main.c: 67: int8_t adc_to_temp(adc_result_t reading)
-[v _reading `us ~T0 @X0 1 r1 ]
-"68
-[; ;main.c: 68: {
+[; ;main.c: 67: {
 [f ]
+"68
+[; ;main.c: 68:     while(*str)
+[e $U 3281  ]
+[e :U 3282 ]
+"69
+[; ;main.c: 69:     {
+{
 "70
-[; ;main.c: 70:  return therm_lut[reading];
-[e ) *U + &U _therm_lut * -> _reading `ux -> -> # *U &U _therm_lut `ui `ux ]
-[e $UE 3280  ]
+[; ;main.c: 70:         SPI1_ExchangeByte(*str++);
+[e ( _SPI1_ExchangeByte (1 -> *U ++ _str * -> -> 1 `i `x -> -> # *U _str `i `x `uc ]
 "71
-[; ;main.c: 71: }
+[; ;main.c: 71:     }
+}
+[e :U 3281 ]
+"68
+[; ;main.c: 68:     while(*str)
+[e $ != -> *U _str `i -> 0 `i 3282  ]
+[e :U 3283 ]
+"72
+[; ;main.c: 72: }
 [e :UE 3280 ]
 }
-"73
-[; ;main.c: 73: uint8_t module_id;
-[v _module_id `uc ~T0 @X0 1 e ]
 "74
-[; ;main.c: 74: int8_t temps[(2 - 1 + 1)];
-[v _temps `c ~T0 @X0 -> 2 `i e ]
+[; ;main.c: 74: int8_t adc_to_temp(adc_result_t reading)
+[v _adc_to_temp `(c ~T0 @X0 1 ef1`us ]
 "75
-[; ;main.c: 75: ADC_channel_t pd_voltages[(10 - 1 + 1)];
+[; ;main.c: 75: {
+{
+[e :U _adc_to_temp ]
+"74
+[; ;main.c: 74: int8_t adc_to_temp(adc_result_t reading)
+[v _reading `us ~T0 @X0 1 r1 ]
+"75
+[; ;main.c: 75: {
+[f ]
+"77
+[; ;main.c: 77:  return therm_lut[reading];
+[e ) *U + &U _therm_lut * -> _reading `ux -> -> # *U &U _therm_lut `ui `ux ]
+[e $UE 3284  ]
+"78
+[; ;main.c: 78: }
+[e :UE 3284 ]
+}
+"80
+[; ;main.c: 80: uint8_t module_id;
+[v _module_id `uc ~T0 @X0 1 e ]
+"81
+[; ;main.c: 81: int8_t temps[(2 - 1 + 1)];
+[v _temps `c ~T0 @X0 -> 2 `i e ]
+"82
+[; ;main.c: 82: ADC_channel_t pd_voltages[(10 - 1 + 1)];
 [v _pd_voltages `E23239 ~T0 @X0 -> 10 `i e ]
 [v $root$_main `(v ~T0 @X0 0 e ]
-"77
-[; ;main.c: 77: void main(void)
+"84
+[; ;main.c: 84: void main(void)
 [v _main `(v ~T0 @X0 1 ef ]
-"78
-[; ;main.c: 78: {
+"85
+[; ;main.c: 85: {
 {
 [e :U _main ]
 [f ]
-"79
-[; ;main.c: 79:     uint8_t is_dead;
+"86
+[; ;main.c: 86:   uint8_t is_dead;
 [v _is_dead `uc ~T0 @X0 1 a ]
-"80
-[; ;main.c: 80:     CAN_MSG_OBJ msg;
-[v _msg `S3279 ~T0 @X0 1 a ]
-"83
-[; ;main.c: 83:     SYSTEM_Initialize();
-[e ( _SYSTEM_Initialize ..  ]
-"84
-[; ;main.c: 84:  ADC_SelectContext(CONTEXT_1);
-[e ( _ADC_SelectContext (1 . `E23258 0 ]
 "87
-[; ;main.c: 87:     module_id = (1 - PORTDbits.RD5) +
-[e = _module_id -> + - -> 1 `i -> . . _PORTDbits 0 5 `i * - -> 1 `i -> . . _PORTDbits 0 6 `i -> 2 `i `uc ]
+[; ;main.c: 87:   CAN_MSG_OBJ msg;
+[v _msg `S3279 ~T0 @X0 1 a ]
 "90
-[; ;main.c: 90:     while (1)
-[e :U 3283 ]
+[; ;main.c: 90:   SYSTEM_Initialize();
+[e ( _SYSTEM_Initialize ..  ]
 "91
-[; ;main.c: 91:     {
+[; ;main.c: 91:   SPI1_Initialize();
+[e ( _SPI1_Initialize ..  ]
+"92
+[; ;main.c: 92: ADC_SelectContext(CONTEXT_1);
+[e ( _ADC_SelectContext (1 . `E23258 0 ]
+"95
+[; ;main.c: 95:   module_id = (1 - PORTDbits.RD5) +
+[e = _module_id -> + - -> 1 `i -> . . _PORTDbits 0 5 `i * - -> 1 `i -> . . _PORTDbits 0 6 `i -> 2 `i `uc ]
+"98
+[; ;main.c: 98:   while (1)
+[e :U 3287 ]
+"99
+[; ;main.c: 99:   {
 {
-"93
-[; ;main.c: 93:   for (uint8_t therm_i = 1; therm_i <= 2; therm_i++)
+"101
+[; ;main.c: 101:   for (uint8_t therm_i = 1; therm_i <= 2; therm_i++)
 {
 [v _therm_i `uc ~T0 @X0 1 a ]
 [e = _therm_i -> -> 1 `i `uc ]
-[e $ <= -> _therm_i `i -> 2 `i 3285  ]
-[e $U 3286  ]
-[e :U 3285 ]
-"94
-[; ;main.c: 94:   {
-{
-"95
-[; ;main.c: 95:       ADC_StartConversion(therm_to_adc_channel[therm_i]);
-[e ( _ADC_StartConversion (1 *U + &U _therm_to_adc_channel * -> _therm_i `ux -> -> # *U &U _therm_to_adc_channel `ui `ux ]
-"96
-[; ;main.c: 96:       while(!ADC_IsConversionDone());
-[e $U 3288  ]
+[e $ <= -> _therm_i `i -> 2 `i 3289  ]
+[e $U 3290  ]
 [e :U 3289 ]
-[e :U 3288 ]
-[e $ ! != -> ( _ADC_IsConversionDone ..  `i -> 0 `i 3289  ]
-[e :U 3290 ]
-"97
-[; ;main.c: 97:       adc_result_t reading = ADC_GetConversionResult();
+"102
+[; ;main.c: 102:   {
+{
+"103
+[; ;main.c: 103:     ADC_StartConversion(therm_to_adc_channel[therm_i]);
+[e ( _ADC_StartConversion (1 *U + &U _therm_to_adc_channel * -> _therm_i `ux -> -> # *U &U _therm_to_adc_channel `ui `ux ]
+"104
+[; ;main.c: 104:     while(!ADC_IsConversionDone());
+[e $U 3292  ]
+[e :U 3293 ]
+[e :U 3292 ]
+[e $ ! != -> ( _ADC_IsConversionDone ..  `i -> 0 `i 3293  ]
+[e :U 3294 ]
+"105
+[; ;main.c: 105:     adc_result_t reading = ADC_GetConversionResult();
 [v _reading `us ~T0 @X0 1 a ]
 [e = _reading ( _ADC_GetConversionResult ..  ]
-"98
-[; ;main.c: 98:       temps[therm_i-1] = adc_to_temp(reading);
+"106
+[; ;main.c: 106:     temps[therm_i-1] = adc_to_temp(reading);
 [e = *U + &U _temps * -> -> - -> _therm_i `i -> 1 `i `ui `ux -> -> # *U &U _temps `ui `ux ( _adc_to_temp (1 _reading ]
-"99
-[; ;main.c: 99:   }
+"108
+[; ;main.c: 108:       char buffer[50];
+[v _buffer `uc ~T0 @X0 -> 50 `i a ]
+"109
+[; ;main.c: 109:       sprintf(buffer, "Temp[%d]: %d\n", therm_i, temps[therm_i - 1]);
+[e ( _sprintf (1 , , (. , &U _buffer :s 1C -> _therm_i `i -> *U + &U _temps * -> -> - -> _therm_i `i -> 1 `i `ui `ux -> -> # *U &U _temps `ui `ux `i ]
+"110
+[; ;main.c: 110:       SPI_SendString(buffer);
+[e ( _SPI_SendString (1 -> &U _buffer `*Cuc ]
+"111
+[; ;main.c: 111:   }
 }
 [e ++ _therm_i -> -> 1 `i `uc ]
-[e $ <= -> _therm_i `i -> 2 `i 3285  ]
-[e :U 3286 ]
+[e $ <= -> _therm_i `i -> 2 `i 3289  ]
+[e :U 3290 ]
 }
-"101
-[; ;main.c: 101:     for (uint8_t pd_i = 1; pd_i <= 10; pd_i++)
+"113
+[; ;main.c: 113:   for (uint8_t pd_i = 1; pd_i <= 10; pd_i++)
 {
 [v _pd_i `uc ~T0 @X0 1 a ]
 [e = _pd_i -> -> 1 `i `uc ]
-[e $ <= -> _pd_i `i -> 10 `i 3291  ]
-[e $U 3292  ]
-[e :U 3291 ]
-"102
-[; ;main.c: 102:     {
-{
-"103
-[; ;main.c: 103:       ADC_StartConversion(pd_to_adc_channel[pd_i]);
-[e ( _ADC_StartConversion (1 *U + &U _pd_to_adc_channel * -> _pd_i `ux -> -> # *U &U _pd_to_adc_channel `ui `ux ]
-"104
-[; ;main.c: 104:       while(!ADC_IsConversionDone());
-[e $U 3294  ]
+[e $ <= -> _pd_i `i -> 10 `i 3295  ]
+[e $U 3296  ]
 [e :U 3295 ]
-[e :U 3294 ]
-[e $ ! != -> ( _ADC_IsConversionDone ..  `i -> 0 `i 3295  ]
-[e :U 3296 ]
-"105
-[; ;main.c: 105:       adc_result_t reading = ADC_GetConversionResult();
-[v _reading `us ~T0 @X0 1 a ]
-[e = _reading ( _ADC_GetConversionResult ..  ]
-"108
-[; ;main.c: 108:       pd_voltages[pd_i-1] = reading;
-[e = *U + &U _pd_voltages * -> -> - -> _pd_i `i -> 1 `i `ui `ux -> -> # *U &U _pd_voltages `ui `ux -> _reading `E23239 ]
-"109
-[; ;main.c: 109:     }
-}
-[e ++ _pd_i -> -> 1 `i `uc ]
-[e $ <= -> _pd_i `i -> 10 `i 3291  ]
-[e :U 3292 ]
-}
-"113
-[; ;main.c: 113:   switch (CAN1_OperationModeGet())
-[e $U 3298  ]
 "114
 [; ;main.c: 114:   {
 {
 "115
-[; ;main.c: 115:   case CAN_CONFIGURATION_MODE:
-[e :U 3299 ]
+[; ;main.c: 115:     ADC_StartConversion(pd_to_adc_channel[pd_i]);
+[e ( _ADC_StartConversion (1 *U + &U _pd_to_adc_channel * -> _pd_i `ux -> -> # *U &U _pd_to_adc_channel `ui `ux ]
 "116
-[; ;main.c: 116:    CAN1_OperationModeSet(CAN_NORMAL_2_0_MODE);
-[e ( _CAN1_OperationModeSet (1 . `E23389 6 ]
-"117
-[; ;main.c: 117:    break;
-[e $U 3297  ]
-"118
-[; ;main.c: 118:   case CAN_NORMAL_2_0_MODE:
+[; ;main.c: 116:     while(!ADC_IsConversionDone());
+[e $U 3298  ]
+[e :U 3299 ]
+[e :U 3298 ]
+[e $ ! != -> ( _ADC_IsConversionDone ..  `i -> 0 `i 3299  ]
 [e :U 3300 ]
+"117
+[; ;main.c: 117:     adc_result_t reading = ADC_GetConversionResult();
+[v _reading `us ~T0 @X0 1 a ]
+[e = _reading ( _ADC_GetConversionResult ..  ]
 "120
-[; ;main.c: 120:       if(CAN_TX_FIFO_AVAILABLE == (CAN1_TransmitFIFOStatusGet(TXQ)))
-[e $ ! == -> . `E23404 1 `ui -> ( _CAN1_TransmitFIFOStatusGet (1 . `E23426 0 `ui 3301  ]
-"121
-[; ;main.c: 121:       {
-{
+[; ;main.c: 120:     pd_voltages[pd_i-1] = reading;
+[e = *U + &U _pd_voltages * -> -> - -> _pd_i `i -> 1 `i `ui `ux -> -> # *U &U _pd_voltages `ui `ux -> _reading `E23239 ]
+"122
+[; ;main.c: 122:       char buffer[50];
+[v _buffer `uc ~T0 @X0 -> 50 `i a ]
 "123
-[; ;main.c: 123:           for (uint8_t multiplexor = 0; multiplexor <= 1; multiplexor++)
+[; ;main.c: 123:       sprintf(buffer, "PD Voltage[%d]: %d\n", pd_i, pd_voltages[pd_i - 1]);
+[e ( _sprintf (1 , , (. , &U _buffer :s 2C -> _pd_i `i -> *U + &U _pd_voltages * -> -> - -> _pd_i `i -> 1 `i `ui `ux -> -> # *U &U _pd_voltages `ui `ux `ui ]
+"124
+[; ;main.c: 124:       SPI_SendString(buffer);
+[e ( _SPI_SendString (1 -> &U _buffer `*Cuc ]
+"125
+[; ;main.c: 125:   }
+}
+[e ++ _pd_i -> -> 1 `i `uc ]
+[e $ <= -> _pd_i `i -> 10 `i 3295  ]
+[e :U 3296 ]
+}
+"129
+[; ;main.c: 129:   switch (CAN1_OperationModeGet())
+[e $U 3302  ]
+"130
+[; ;main.c: 130:   {
+{
+"131
+[; ;main.c: 131:   case CAN_CONFIGURATION_MODE:
+[e :U 3303 ]
+"132
+[; ;main.c: 132:     CAN1_OperationModeSet(CAN_NORMAL_2_0_MODE);
+[e ( _CAN1_OperationModeSet (1 . `E23389 6 ]
+"133
+[; ;main.c: 133:     break;
+[e $U 3301  ]
+"134
+[; ;main.c: 134:   case CAN_NORMAL_2_0_MODE:
+[e :U 3304 ]
+"136
+[; ;main.c: 136:       if(CAN_TX_FIFO_AVAILABLE == (CAN1_TransmitFIFOStatusGet(TXQ)))
+[e $ ! == -> . `E23404 1 `ui -> ( _CAN1_TransmitFIFOStatusGet (1 . `E23426 0 `ui 3305  ]
+"137
+[; ;main.c: 137:       {
+{
+"139
+[; ;main.c: 139:         for (uint8_t multiplexor = 0; multiplexor <= 1; multiplexor++)
 {
 [v _multiplexor `uc ~T0 @X0 1 a ]
 [e = _multiplexor -> -> 0 `i `uc ]
-[e $ <= -> _multiplexor `i -> 1 `i 3302  ]
-[e $U 3303  ]
-[e :U 3302 ]
-"124
-[; ;main.c: 124:           {
-{
-"125
-[; ;main.c: 125:             msg = get_PD_Broadcast_msg(pd_voltages, module_id, multiplexor);
-[e = _msg ( _get_PD_Broadcast_msg (3 , , &U _pd_voltages _module_id _multiplexor ]
-"126
-[; ;main.c: 126:             CAN1_Transmit(TXQ, &msg);
-[e ( _CAN1_Transmit (2 , . `E23426 0 &U _msg ]
-"127
-[; ;main.c: 127:             while(CAN1_TransmitFIFOStatusGet(TXQ) == CAN_TX_FIFO_FULL);
-[e $U 3305  ]
+[e $ <= -> _multiplexor `i -> 1 `i 3306  ]
+[e $U 3307  ]
 [e :U 3306 ]
-[e :U 3305 ]
-[e $ == -> ( _CAN1_TransmitFIFOStatusGet (1 . `E23426 0 `ui -> . `E23404 0 `ui 3306  ]
-[e :U 3307 ]
-"128
-[; ;main.c: 128:           }
+"140
+[; ;main.c: 140:         {
+{
+"141
+[; ;main.c: 141:           msg = get_PD_Broadcast_msg(pd_voltages, module_id, multiplexor);
+[e = _msg ( _get_PD_Broadcast_msg (3 , , &U _pd_voltages _module_id _multiplexor ]
+"142
+[; ;main.c: 142:           CAN1_Transmit(TXQ, &msg);
+[e ( _CAN1_Transmit (2 , . `E23426 0 &U _msg ]
+"143
+[; ;main.c: 143:           while(CAN1_TransmitFIFOStatusGet(TXQ) == CAN_TX_FIFO_FULL);
+[e $U 3309  ]
+[e :U 3310 ]
+[e :U 3309 ]
+[e $ == -> ( _CAN1_TransmitFIFOStatusGet (1 . `E23426 0 `ui -> . `E23404 0 `ui 3310  ]
+[e :U 3311 ]
+"145
+[; ;main.c: 145:             char buffer[50];
+[v _buffer `uc ~T0 @X0 -> 50 `i a ]
+"146
+[; ;main.c: 146:             sprintf(buffer, "PD Broadcast Msg: Multiplexor %d\n", multiplexor);
+[e ( _sprintf (1 , (. , &U _buffer :s 3C -> _multiplexor `i ]
+"147
+[; ;main.c: 147:             SPI_SendString(buffer);
+[e ( _SPI_SendString (1 -> &U _buffer `*Cuc ]
+"148
+[; ;main.c: 148:         }
 }
 [e ++ _multiplexor -> -> 1 `i `uc ]
-[e $ <= -> _multiplexor `i -> 1 `i 3302  ]
-[e :U 3303 ]
+[e $ <= -> _multiplexor `i -> 1 `i 3306  ]
+[e :U 3307 ]
 }
-"131
-[; ;main.c: 131:           uint8_t multiplexor = 3;
+"151
+[; ;main.c: 151:         uint8_t multiplexor = 2;
 [v _multiplexor `uc ~T0 @X0 1 a ]
-[e = _multiplexor -> -> 3 `i `uc ]
-"132
-[; ;main.c: 132:           msg = get_Therm_Broadcast_msg(temps, module_id, multiplexor);
+[e = _multiplexor -> -> 2 `i `uc ]
+"152
+[; ;main.c: 152:         msg = get_Therm_Broadcast_msg(temps, module_id, multiplexor);
 [e = _msg ( _get_Therm_Broadcast_msg (3 , , &U _temps _module_id _multiplexor ]
-"133
-[; ;main.c: 133:           CAN1_Transmit(TXQ, &msg);
+"153
+[; ;main.c: 153:         CAN1_Transmit(TXQ, &msg);
 [e ( _CAN1_Transmit (2 , . `E23426 0 &U _msg ]
-"134
-[; ;main.c: 134:           while(CAN1_TransmitFIFOStatusGet(TXQ) == CAN_TX_FIFO_FULL);
-[e $U 3308  ]
-[e :U 3309 ]
-[e :U 3308 ]
-[e $ == -> ( _CAN1_TransmitFIFOStatusGet (1 . `E23426 0 `ui -> . `E23404 0 `ui 3309  ]
-[e :U 3310 ]
-"135
-[; ;main.c: 135:       }
+"154
+[; ;main.c: 154:         while(CAN1_TransmitFIFOStatusGet(TXQ) == CAN_TX_FIFO_FULL);
+[e $U 3312  ]
+[e :U 3313 ]
+[e :U 3312 ]
+[e $ == -> ( _CAN1_TransmitFIFOStatusGet (1 . `E23426 0 `ui -> . `E23404 0 `ui 3313  ]
+[e :U 3314 ]
+"156
+[; ;main.c: 156:           char buffer[50];
+[v _buffer `uc ~T0 @X0 -> 50 `i a ]
+"157
+[; ;main.c: 157:           sprintf(buffer, "Thermistor Broadcast Msg");
+[e ( _sprintf (1 , &U _buffer :s 4C ]
+"158
+[; ;main.c: 158:           SPI_SendString(buffer);
+[e ( _SPI_SendString (1 -> &U _buffer `*Cuc ]
+"159
+[; ;main.c: 159:         break;
+[e $U 3301  ]
+"160
+[; ;main.c: 160:       }
 }
+[e :U 3305 ]
+"161
+[; ;main.c: 161:   default:
+[e :U 3315 ]
+"162
+[; ;main.c: 162:     break;
+[e $U 3301  ]
+"163
+[; ;main.c: 163:   }
+}
+[e $U 3301  ]
+[e :U 3302 ]
+[e [\ -> ( _CAN1_OperationModeGet ..  `ui , $ -> . `E23389 4 `ui 3303
+ , $ -> . `E23389 6 `ui 3304
+ 3315 ]
 [e :U 3301 ]
-"136
-[; ;main.c: 136:    break;
-[e $U 3297  ]
-"137
-[; ;main.c: 137:   default:
-[e :U 3311 ]
-"138
-[; ;main.c: 138:    break;
-[e $U 3297  ]
-"139
-[; ;main.c: 139:   }
-}
-[e $U 3297  ]
-[e :U 3298 ]
-[e [\ -> ( _CAN1_OperationModeGet ..  `ui , $ -> . `E23389 4 `ui 3299
- , $ -> . `E23389 6 `ui 3300
- 3311 ]
-[e :U 3297 ]
-"140
-[; ;main.c: 140:   _delay((unsigned long)((100)*(20000000/4000.0)));
+"164
+[; ;main.c: 164:   _delay((unsigned long)((100)*(20000000/4000.0)));
 [e ( __delay (1 -> * -> -> 100 `i `d / -> -> 20000000 `l `d .4000.0 `ul ]
-"141
-[; ;main.c: 141:     }
+"165
+[; ;main.c: 165:   }
 }
-[e :U 3282 ]
-[e $U 3283  ]
-[e :U 3284 ]
-"142
-[; ;main.c: 142: }
-[e :UE 3281 ]
+[e :U 3286 ]
+[e $U 3287  ]
+[e :U 3288 ]
+"166
+[; ;main.c: 166: }
+[e :UE 3285 ]
 }
+[p f _sprintf 8388736 ]
+[a 4C 84 104 101 114 109 105 115 116 111 114 32 66 114 111 97 100 99 97 115 116 32 77 115 103 0 ]
+[a 3C 80 68 32 66 114 111 97 100 99 97 115 116 32 77 115 103 58 32 77 117 108 116 105 112 108 101 120 111 114 32 37 100 10 0 ]
+[a 1C 84 101 109 112 91 37 100 93 58 32 37 100 10 0 ]
+[a 2C 80 68 32 86 111 108 116 97 103 101 91 37 100 93 58 32 37 100 10 0 ]

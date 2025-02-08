@@ -44,7 +44,6 @@
 #include "config.h"
 #include "can_msgs.h"
 #include "therm_LUT.h"
-#include "spi.h"
 
 ADC_channel_t therm_to_adc_channel[] = {
 THERM_1,
@@ -157,9 +156,8 @@ ADC_SelectContext(CONTEXT_1);
           char buffer[50];
           sprintf(buffer, "Thermistor Broadcast Msg");
           SPI_SendString(buffer); // Send Thermistor broadcast message over SPI
-        }
+        break;
       }
-    break;
   default:
     break;
   }
