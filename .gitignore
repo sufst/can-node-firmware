@@ -1,0 +1,13 @@
+.generated_files
+build
+debug
+dist
+motorbench
+nbproject/Makefile-*
+nbproject/Package-*
+nbproject/private
+MPLABXlog.*
+build_failure_log.txt
+**/*.vscode
+**/*.zip
+
